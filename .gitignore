@@ -1,0 +1,90 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+
+# System files
+.DS_Store
+Thumbs.db
+.npm-cache/
+
+# Additional generated reports and caches
+playwright-report/
+test-results/
+.nyc_output/
+.cache/
+
+# Private environment files (keep safe templates)
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Local credentials and private keys
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Logs, caches and local tooling
+*.log
+*.log.*
+.local/
+.tools/
+.codex/
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local backups and database files (SQL source remains versioned)
+*.bak
+*.tmp
+*.swp
+*~
+*.mdf
+*.ndf
+*.ldf
+*.db
+*.sqlite
+*.sqlite3
+
+# OS metadata
+Desktop.ini
+$RECYCLE.BIN/

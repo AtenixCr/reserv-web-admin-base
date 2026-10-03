@@ -1,0 +1,9 @@
+import { TestBed } from '@angular/core/testing';
+import { Api } from './api';
+import { Activity } from './activity';
+describe('Activity',()=>{
+  let request:ReturnType<typeof vi.fn>;
+  beforeEach(()=>{request=vi.fn().mockImplementation((path:string)=>Promise.resolve(path==='/calendar'?{serverDate:'2026-09-26'}:path==='/activity/options'?{actors:[{id:'1',name:'Admin'}],types:['LOGIN'],entities:['Task']}:path.includes('/entries')?{items:[{id:'E-1',occurredAt:'2026-09-26T12:00:00Z',actorName:null,entity:null,entityId:null,type:'LOGIN',outcome:'FAILURE',origin:'APPLICATION',source:'EVENT'}],page:0,size:20,total:1}:{items:[{groupKey:'E-1',occurredAt:'2026-09-26T12:00:00Z',actorName:null,entryCount:1,type:'LOGIN'}],page:0,size:20,total:21}));TestBed.configureTestingModule({providers:[{provide:Api,useValue:{request,reset:vi.fn()}}]});});
+  it('renders a failed login without raw JSON and labels the unknown actor',async()=>{const fixture=TestBed.createComponent(Activity);await fixture.whenStable();await fixture.componentInstance.open('E-1');fixture.detectChanges();expect(fixture.nativeElement.textContent).toContain('Fallido');expect(fixture.nativeElement.textContent).toContain('Usuario desconocido o proceso automático');expect(fixture.nativeElement.textContent).not.toContain('beforeData');});
+  it('retains applied filters for pagination and clears them with cancel',async()=>{const fixture=TestBed.createComponent(Activity);await fixture.whenStable();const c=fixture.componentInstance;c.actorId='1';c.type='LOGIN';c.entity='Task';await c.search();c.type='DELETE';await c.paginate(1);expect(request.mock.calls.at(-1)?.[0]).toContain('type=LOGIN');expect(request.mock.calls.at(-1)?.[0]).toContain('page=1');await c.cancel();expect(c.actorId).toBe('');expect(c.type).toBe('');expect(c.page).toBe(0);});
+});
