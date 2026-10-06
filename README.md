@@ -31,3 +31,7 @@ Este proyecto es el espacio de trabajo del personal dentro del sistema de gesti�
 Ejecuta npm ci y npm run build con las versiones de Node y npm indicadas en package.json. Publica el contenido de dist/admin-web/browser/ en la raíz del sitio. La compilación de producción usa https://reserva.api.atenix.net/api/v1, definida en src/environments/environment.production.ts. npm start conserva la conexión local mediante /api/v1 y proxy.conf.json. Los archivos .env no configuran automáticamente Angular.
 
 La API necesita su dominio HTTPS activo y permitir el origen de este sitio mediante CORS. Guía completa: https://github.com/AtenixCr/reserv-web-base-backend/blob/main/docs/render-deployment.md
+
+## GitHub Pages
+
+El flujo .github/workflows/deploy-pages.yml compila y publica automáticamente cada cambio en main. En Settings > Pages selecciona GitHub Actions como fuente y conserva el dominio personalizado. También puedes ejecutarlo desde Actions > Deploy Angular to GitHub Pages > Run workflow. Activa Enforce HTTPS cuando el certificado esté disponible.
